@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{%block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <h1>Online Food Shop</h1>
+        <a href="{% url 'all_order'%}">Main Menu</a>
+        {% if user.is_authenticated %}        
+        <a href="{% url 'password_change'%}"></a> 
+        <a href="{% url 'logout'%}"></a>
+        {% else %}
+        <a href="{% url 'signup'%}">/ Sign Up</a> /
+        <a href="{% url 'all_order'%}">Log in</a> 
+        {% endif %}
+        <hr>
+        {% block content %}
+        
+        {% endblock %}
+    </body>
+    
+</html>
