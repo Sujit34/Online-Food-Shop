@@ -13,11 +13,11 @@ def new_product(request):
         form = ProductForm(request.POST)
         if form.is_valid():
             if form.save():
-                return redirect('/allproducts', messages.success(request, 'Product was successfully created.', 'alert-success'))
+                return redirect('/resturant/allproducts', messages.success(request, 'Product was successfully created.', 'alert-success'))
             else:
-                return redirect('/allproducts', messages.error(request, 'Data is not saved', 'alert-danger'))
+                return redirect('/resturant/allproducts', messages.error(request, 'Data is not saved', 'alert-danger'))
         else:
-            return redirect('/allproducts', messages.error(request, 'Form is not valid', 'alert-danger'))
+            return redirect('/resturant/allproducts', messages.error(request, 'Form is not valid', 'alert-danger'))
     else:
         product_form = ProductForm()
         return render(request, 'new_product.html', {'product_form':product_form})
@@ -34,9 +34,9 @@ def all_product(request):
 @login_required
 def del_product(request, product_id):
     if Product.objects.filter(id=product_id).update(stock='0'):
-        return redirect('/allproducts', messages.success(request, 'Successfully Deleted', 'alert-success'))
+        return redirect('/resturant/allproducts', messages.success(request, 'Successfully Deleted', 'alert-success'))
     else:
-        return redirect('/allproducts', messages.error(request, 'can not delete the product', 'alert-danger'))
+        return redirect('/resturant/allproducts', messages.error(request, 'can not delete the product', 'alert-danger'))
 
 
 # Edit Product
@@ -47,11 +47,11 @@ def edit_product(request, product_id):
         form = ProductForm(request.POST, instance=product)
         if form.is_valid():
             if form.save():
-                return redirect('/allproducts', messages.success(request, 'Product was successfully updated.', 'alert-success'))
+                return redirect('/resturant/allproducts', messages.success(request, 'Product was successfully updated.', 'alert-success'))
             else:
-                return redirect('/allproducts', messages.error(request, 'Data is not updated', 'alert-danger'))
+                return redirect('/resturant/allproducts', messages.error(request, 'Data is not updated', 'alert-danger'))
         else:
-            return redirect('/allproducts', messages.error(request, 'Form is not valid', 'alert-danger'))
+            return redirect('/resturant/allproducts', messages.error(request, 'Form is not valid', 'alert-danger'))
     else:
         product_form = ProductForm(instance=product)
         return render(request, 'new_product.html', {'product_form':product_form})
@@ -65,11 +65,11 @@ def new_order(request):
         form = OrderForm(request.POST)
         if form.is_valid():
             if form.save():
-                return redirect('/allorders', messages.success(request, 'Order was successfully created.', 'alert-success'))
+                return redirect('/resturant/allorders', messages.success(request, 'Order was successfully created.', 'alert-success'))
             else:
-                return redirect('/allorders', messages.error(request, 'Data is not saved', 'alert-danger'))
+                return redirect('/resturant/allorders', messages.error(request, 'Data is not saved', 'alert-danger'))
         else:
-            return redirect('/allorders', messages.error(request, 'Form is not valid', 'alert-danger'))
+            return redirect('/resturant/allorders', messages.error(request, 'Form is not valid', 'alert-danger'))
     else:
         order_form = OrderForm()
         return render(request, 'new_order.html', {'order_form':order_form})
@@ -86,9 +86,9 @@ def all_order(request):
 #Delete Products
 def del_order(request, order_id):
     if Order.objects.filter(id=order_id).delete():
-        return redirect('/allorders', messages.success(request, 'Successfully Deleted', 'alert-success'))
+        return redirect('/resturant/allorders', messages.success(request, 'Successfully Deleted', 'alert-success'))
     else:
-        return redirect('/allorders', messages.error(request, 'can not delete the product', 'alert-danger'))
+        return redirect('/resturant/allorders', messages.error(request, 'can not delete the product', 'alert-danger'))
 
 
 # Edit Order
@@ -99,11 +99,11 @@ def edit_order(request, order_id):
         form = OrderForm(request.POST, instance=order)
         if form.is_valid():
             if form.save():
-                return redirect('/allorders', messages.success(request, 'Order was successfully updated.', 'alert-success'))
+                return redirect('/resturant/allorders', messages.success(request, 'Order was successfully updated.', 'alert-success'))
             else:
-                return redirect('/allorders', messages.error(request, 'Data is not saved', 'alert-danger'))
+                return redirect('/resturant/allorders', messages.error(request, 'Data is not saved', 'alert-danger'))
         else:
-            return redirect('/allorders', messages.error(request, 'Form is not valid', 'alert-danger'))
+            return redirect('/resturant/allorders', messages.error(request, 'Form is not valid', 'alert-danger'))
     else:
         order_form = OrderForm(instance=order)
         return render(request, 'new_order.html', {'order_form':order_form})
